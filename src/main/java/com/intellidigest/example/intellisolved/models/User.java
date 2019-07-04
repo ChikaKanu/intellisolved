@@ -46,7 +46,7 @@ public class User implements Serializable {
     @JsonIgnoreProperties("paymentDetails")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy="user", fetch=FetchType.LAZY)
-    private List<Payment> paymentDetails;
+    private List<StorePreference> paymentDetails;
 
     @JsonIgnoreProperties("basket")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
@@ -155,11 +155,11 @@ public class User implements Serializable {
         this.postcode = postcode;
     }
 
-    public List<Payment> getPaymentDetails() {
+    public List<StorePreference> getPaymentDetails() {
         return paymentDetails;
     }
 
-    public void setPaymentDetails(List<Payment> paymentDetails) {
+    public void setPaymentDetails(List<StorePreference> paymentDetails) {
         this.paymentDetails = paymentDetails;
     }
 
