@@ -43,20 +43,14 @@ public class User implements Serializable {
     @Column(name = "postcode")
     private String postcode;
 
-    @JsonIgnoreProperties("paymentDetails")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy="user", fetch=FetchType.LAZY)
-    private List<StorePreference> paymentDetails;
+    @Column(name="products")
+    private List<Product> products;
 
-    @JsonIgnoreProperties("basket")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Product> basket;
-
-    @JsonIgnoreProperties("orders")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @Column(name="orders")
     private List<Order> orders;
+
+    @Column(name="stores")
+    private List<Store> storesPreferred;
 
     public User(String firstName, String surname, String email, String username, String password, String phone, String address, String city, String postcode) {
         this.firstName = firstName;
@@ -68,9 +62,9 @@ public class User implements Serializable {
         this.address = address;
         this.city = city;
         this.postcode = postcode;
-        this.paymentDetails=new ArrayList<>();
         this.orders = new ArrayList<>();
-        this.basket = new ArrayList<>();
+        this.products = new ArrayList<>();
+        this.storesPreferred = new ArrayList<>();
     }
 
     public User(){};
@@ -155,20 +149,12 @@ public class User implements Serializable {
         this.postcode = postcode;
     }
 
-    public List<StorePreference> getPaymentDetails() {
-        return paymentDetails;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setPaymentDetails(List<StorePreference> paymentDetails) {
-        this.paymentDetails = paymentDetails;
-    }
-
-    public List<Product> getBasket() {
-        return basket;
-    }
-
-    public void setBasket(List<Product> basket) {
-        this.basket = basket;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public List<Order> getOrders() {
@@ -177,6 +163,14 @@ public class User implements Serializable {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public List<Store> getStoresPreferred() {
+        return storesPreferred;
+    }
+
+    public void setStoresPreferred(List<Store> stores) {
+        this.storesPreferred = stores;
     }
 }
 

@@ -22,7 +22,7 @@ public class Order {
     @Column(name="status")
     private String status;
 
-    @JsonIgnoreProperties("product")
+    @JsonIgnoreProperties("stores")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy="order", fetch=FetchType.LAZY)
     private List<Product> products;
