@@ -1,11 +1,7 @@
 package com.intellidigest.example.intellisolved.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name="stores")
@@ -27,24 +23,11 @@ public class Store {
     @Column(name="postcode")
     private String postcode;
 
-    @JsonIgnoreProperties("orders")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY )
-    private List<Product> products;
-
-    @JsonIgnoreProperties("orders")
-    @OneToOne
-    @JoinColumn(name="user_id", nullable=false)
-    private User user;
-
-
     public Store(String name, String address, String city, String postcode) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.postcode = postcode;
-        this.user = user;
-        this.products = new ArrayList<>();
     }
 
 
@@ -89,13 +72,5 @@ public class Store {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

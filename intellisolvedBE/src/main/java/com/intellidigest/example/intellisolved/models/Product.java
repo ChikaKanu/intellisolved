@@ -21,32 +21,20 @@ public class Product {
     @Column(name="description")
     private String description;
 
-    @JsonIgnoreProperties("orders")
-    @ManyToOne
-    @JoinColumn(name="store_id")
-    private Store store;
-
     @Column(name="price")
     private Double price;
 
     @Column(name="image")
     private byte[] image;
 
-    @JsonIgnoreProperties("stores")
-    @ManyToOne
-    @JoinColumn(name="order_id", nullable=false)
-    private Order order;
-
     @Column(name="quantity")
     private Double quantity;
 
-    public Product(String name, String description, String productId, byte[] image, Double price, Order order, Store store, Double quantity) {
+    public Product(String name, String description, String productId, byte[] image, Double price, Double quantity) {
         this.productId = productId;
         this.name = name;
         this.description = description;
         this.image = image;
-        this.store = store;
-        this.order = order;
         this.price = price;
         this.quantity = quantity;
     }
@@ -109,19 +97,4 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
-    }
 }

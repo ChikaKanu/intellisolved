@@ -22,12 +22,10 @@ public class Order {
     @Column(name="status")
     private String status;
 
-    @JsonIgnoreProperties("stores")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy="order", fetch=FetchType.LAZY)
-    private List<Product> products;
+    @Column(name="products")
+    private ArrayList<Product> products;
 
-    public Order(String status) {
+    public Order(String orderNumber, String status) {
         this.id = id;
         this.orderNumber = orderNumber;
         this.status = status;
@@ -52,7 +50,6 @@ public class Order {
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
-
     public String getStatus() {
         return status;
     }
@@ -61,11 +58,11 @@ public class Order {
         this.status = status;
     }
 
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
 }

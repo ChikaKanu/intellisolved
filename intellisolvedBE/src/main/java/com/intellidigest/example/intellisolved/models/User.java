@@ -44,13 +44,13 @@ public class User implements Serializable {
     private String postcode;
 
     @Column(name="products")
-    private List<Product> products;
+    private ArrayList<Product> products;
 
     @Column(name="orders")
-    private List<Order> orders;
+    private ArrayList<Order> orders;
 
     @Column(name="stores")
-    private List<Store> storesPreferred;
+    private ArrayList<Store> storesPreferred;
 
     public User(String firstName, String surname, String email, String username, String password, String phone, String address, String city, String postcode) {
         this.firstName = firstName;
@@ -149,28 +149,56 @@ public class User implements Serializable {
         this.postcode = postcode;
     }
 
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
 
-    public List<Order> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
 
-    public List<Store> getStoresPreferred() {
+    public ArrayList<Store> getStoresPreferred() {
         return storesPreferred;
     }
 
-    public void setStoresPreferred(List<Store> stores) {
+    public void setStoresPreferred(ArrayList<Store> stores) {
         this.storesPreferred = stores;
+    }
+
+    public void addStore(Store store){
+        this.storesPreferred.add(store);
+    }
+
+    public ArrayList removeStore(Store store){
+        this.storesPreferred.remove(store);
+        return this.storesPreferred;
+    }
+
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
+
+    public ArrayList removeProduct(Product product){
+        this.products.remove(product);
+        return this.products;
+    }
+
+
+    public void addOrder(Order order){
+        this.orders.add(order);
+    }
+
+    public ArrayList removeOrder(Order order){
+        this.orders.remove(order);
+        return this.orders;
     }
 }
 
