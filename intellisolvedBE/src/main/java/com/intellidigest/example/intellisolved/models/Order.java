@@ -22,14 +22,14 @@ public class Order {
     @Column(name="status")
     private String status;
 
-    @Column(name="products")
-    private ArrayList<Product> products;
+//    @Column(name="products")
+//    private ArrayList<Product> products;
 
     public Order(String orderNumber, String status) {
         this.id = id;
         this.orderNumber = orderNumber;
         this.status = status;
-        this.products = new ArrayList<>();
+//        this.products = new ArrayList<>();
     }
 
     public Order(){};
@@ -58,12 +58,12 @@ public class Order {
         this.status = status;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
+//    public ArrayList<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(ArrayList<Product> products) {
+//        this.products = products;
+//    }
 }
 
