@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ProductList from "../components/ProductsList.js"
+import ProductList from "../components/products/ProductsList.js/index.js"
 
 
 
@@ -25,14 +25,13 @@ class ProductAPI extends Component{
     }
 
 
-    SetSearchCriteria(){
+    // SetSearchCriteria(){
 
-    }
+    // }
 
     render(){
         return(
             <ProductList products = {this.state.products} />
-
         )
     }
 
