@@ -23,13 +23,21 @@ public class Order implements Serializable {
     @Column(name="status")
     private String status;
 
-    @Column(name="products")
-    private ArrayList<Product> products;
+    @JsonIgnoreProperties("users")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    public Order(String orderNumber, String status) {
+    @JsonIgnoreProperties("products")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<Product> products;
+
+    public Order(String orderNumber, User user, String status) {
         this.id = id;
         this.orderNumber = orderNumber;
         this.status = status;
+        this.user = user;
         this.products = new ArrayList<>();
     }
 
@@ -51,6 +59,7 @@ public class Order implements Serializable {
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
+
     public String getStatus() {
         return status;
     }
@@ -59,12 +68,29 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public ArrayList<Product> getProducts() {
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Product> getProducts(){
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        this.products.remove(product);
     }
 }
 

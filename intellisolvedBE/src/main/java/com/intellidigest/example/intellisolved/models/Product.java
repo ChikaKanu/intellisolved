@@ -30,13 +30,25 @@ public class Product {
     @Column(name="quantity")
     private Double quantity;
 
-    public Product(String name, String description, String productId, byte[] image, Double price, Double quantity) {
+    @JsonIgnoreProperties("users")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @JsonIgnoreProperties("orders")
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
+    public Product(String name, String description, String productId, byte[] image, Double price, Double quantity, User user, Order order) {
         this.productId = productId;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
         this.quantity = quantity;
+        this.user = user;
+        this.order = order;
     }
 
     public Product(){};
@@ -95,6 +107,24 @@ public class Product {
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
 }

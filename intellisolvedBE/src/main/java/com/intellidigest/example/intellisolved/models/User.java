@@ -43,14 +43,20 @@ public class User implements Serializable {
     @Column(name = "postcode")
     private String postcode;
 
-    @Column(name="products")
-    private ArrayList<Product> products;
+    @JsonIgnoreProperties("products")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Product> preferredProducts;
 
-    @Column(name="orders")
-    private ArrayList<Order> orders;
+    @JsonIgnoreProperties("orders")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Order> orders;
 
-    @Column(name="stores")
-    private ArrayList<Store> storesPreferred;
+    @JsonIgnoreProperties("stores")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Store> preferredStores;
 
     public User(String firstName, String surname, String email, String username, String password, String phone, String address, String city, String postcode) {
         this.firstName = firstName;
@@ -63,8 +69,8 @@ public class User implements Serializable {
         this.city = city;
         this.postcode = postcode;
         this.orders = new ArrayList<>();
-        this.products = new ArrayList<>();
-        this.storesPreferred = new ArrayList<>();
+        this.preferredProducts = new ArrayList<>();
+        this.preferredStores = new ArrayList<>();
     }
 
     public User(){};
@@ -149,57 +155,55 @@ public class User implements Serializable {
         this.postcode = postcode;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public List<Product> getPreferredProducts() {
+        return preferredProducts;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void setPreferredProducts(List<Product> products) {
+        this.preferredProducts = products;
     }
 
-    public ArrayList<Order> getOrders() {
+
+    public void addPreferredProduct(Product product){
+        this.preferredProducts.add(product);
+    }
+
+    public void removePreferredProduct(Product product){
+        this.preferredProducts.remove(product);
+    }
+
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(ArrayList<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-
-    public ArrayList<Store> getStoresPreferred() {
-        return storesPreferred;
-    }
-
-    public void setStoresPreferred(ArrayList<Store> stores) {
-        this.storesPreferred = stores;
-    }
-
-    public void addStore(Store store){
-        this.storesPreferred.add(store);
-    }
-
-    public ArrayList removeStore(Store store){
-        this.storesPreferred.remove(store);
-        return this.storesPreferred;
-    }
-
-    public void addProduct(Product product){
-        this.products.add(product);
-    }
-
-    public ArrayList removeProduct(Product product){
-        this.products.remove(product);
-        return this.products;
-    }
-
 
     public void addOrder(Order order){
         this.orders.add(order);
     }
 
-    public ArrayList removeOrder(Order order){
+    public void removeOrder(Order order){
         this.orders.remove(order);
-        return this.orders;
     }
+
+    public List<Store> getPreferredStore() {
+        return preferredStores;
+    }
+
+    public void setPreferredStores(List<Store> stores) {
+        this.preferredStores = stores;
+    }
+
+    public void addStore(Store store){
+        this.preferredStores.add(store);
+    }
+
+    public void removeStore(Store store){
+        this.preferredStores.remove(store);
+    }
+
 }
 
 

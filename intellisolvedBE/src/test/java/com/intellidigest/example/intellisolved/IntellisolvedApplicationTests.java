@@ -13,4 +13,13 @@ public class IntellisolvedApplicationTests {
 	public void contextLoads() {
 	}
 
+
+	@Test
+	public void getNameTest(){
+
+	}
+
+
+
+
 }

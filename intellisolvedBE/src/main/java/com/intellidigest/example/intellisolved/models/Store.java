@@ -1,5 +1,7 @@
 package com.intellidigest.example.intellisolved.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 
@@ -23,11 +25,17 @@ public class Store {
     @Column(name="postcode")
     private String postcode;
 
-    public Store(String name, String address, String city, String postcode) {
+    @JsonIgnoreProperties("users")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Store(String name, String address, String city, String postcode, User user) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.postcode = postcode;
+        this.user = user;
     }
 
 
@@ -72,5 +80,14 @@ public class Store {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
