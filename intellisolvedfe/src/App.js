@@ -4,6 +4,7 @@ import './App.css';
 import Header from  "../src/components/Header.js"
 import MainContainer from  "../src/components/MainContainer"
 import ProductsList from "../src/components/products/ProductsList"
+import ProductAPI from "../src/api/ProductAPI"
 
 class App extends Component{
   render(){
@@ -13,7 +14,7 @@ class App extends Component{
           <Header/>
           <Switch>
             <Route exact path='/' component = {MainContainer} />
-            <Route excat path='/offers' component={ProductsList} />
+            <Route excat path='/offers' component={ProductAPI} />
           </Switch>
         </React.Fragment>
       </Router>

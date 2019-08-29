@@ -1,17 +1,17 @@
 import React, {Component} from "react";
 
-class ProductList extends Component{
-    constructor(){
+class ProductsList extends Component{
+    constructor(products){
         super();
         this.state = {
-
+            products: null
         }
     }
 
     render(){
         return(
             <div>
-                
+
             </div>
 
 
@@ -19,4 +19,4 @@ class ProductList extends Component{
     }
 }
 
-export default ProductList;
+export default ProductsList;

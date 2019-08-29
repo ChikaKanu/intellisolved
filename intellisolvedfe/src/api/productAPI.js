@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ProductList from "../components/products/ProductsList.js/index.js"
+import ProductsList from "../components/products/ProductsList.js"
 
 
 
@@ -12,15 +12,15 @@ class ProductAPI extends Component{
         }
     }
 
-    componentDidMount(query, offset, limit){
+    componentDidMount(){
         const request = new Request();
         request.get("https://dev.tescolabs.com/grocery/products/?query=pizza&offset=0&limit=20", {
             method: 'POST',
             headers: {  
               'Ocp-Apim-Subscription-Key:': '2dce742e5c0f455496353c3887116137',
-              'Accept': 'application/json'
+              'Accept': 'application/json',
             }}).then((data)=> {
-                this.setState({products: data.uk.ghs.products.results})
+                this.setState({products: data.uk.ghs.products.results});
             })
     }
 
@@ -30,8 +30,9 @@ class ProductAPI extends Component{
     // }
 
     render(){
+        console.log(this.state.products);
         return(
-            <ProductList products = {this.state.products} />
+            <ProductsList products = {this.state.products} />
         )
     }
 
