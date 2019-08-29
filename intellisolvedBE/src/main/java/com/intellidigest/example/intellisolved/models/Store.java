@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+//this class is also "Location"
 
 @Entity
 @Table(name="stores")
