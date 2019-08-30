@@ -37,7 +37,7 @@ public class Product {
 
     @JsonIgnoreProperties("orders")
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     public Product(String name, String description, String productId, String image, double price, double quantity, User user, Order order) {

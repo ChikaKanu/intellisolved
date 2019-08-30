@@ -6,6 +6,8 @@ import com.intellidigest.example.intellisolved.models.Store;
 import com.intellidigest.example.intellisolved.models.User;
 import org.springframework.data.rest.core.config.Projection;
 
+import java.util.List;
+
 @Projection(name = "embedded", types = User.class)
 public interface UserProjection {
    long getId();
@@ -18,7 +20,7 @@ public interface UserProjection {
    String getAddress();
    String getCity();
    String getPostcode();
-   Product getPreferredProducts();
-   Order getOrder();
-   Store getPreferredStore();
+   List<Product> getPreferredProducts();
+   List<Order> getOrder();
+   List<Store> getPreferredStore();
 }
