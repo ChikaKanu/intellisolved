@@ -56,17 +56,6 @@ public class DataLoader implements ApplicationRunner {
         Order order5 = new Order("NO293", user1, "complete");
         orderRepository.save(order5);
 
-        Product product1 = new Product("milk", "Fresh cow milk", "m000232", "picture1", 20, 30, user1, order1);
-        productRepository.save(product1);
-        Product product2 = new Product("butter", "Camman butter", "m000452", "picture2", 3, 20, user2, order3);
-        productRepository.save(product2);
-        Product product3 = new Product("chocolate", "Dark switzerland best offer", "m000672", "picture3", 6, 60, null, null);
-        productRepository.save(product3);
-        Product product4 = new Product("pizza", "stone base meat and mushroom pizza", "m000522", "picture4", 14, 5, user2, order4);
-        productRepository.save(product4);
-        Product product5 = new Product("bread", "buttered soft bread", "m000012", "picture5", 1, 50, user5, order5);
-        productRepository.save(product5);
-
         Store store1 = new Store("Codeclan", "2/3 Queens Street", "EH147BA", "Edinburgh", user1);
         storeRepository.save(store1);
         Store store2 = new Store("Nucleus", "12 Halaw Street", "EH727BA", "Edinburgh", user2);
@@ -79,6 +68,19 @@ public class DataLoader implements ApplicationRunner {
         storeRepository.save(store5);
         Store store6 = new Store("Johnny Restaurant", "2/3 Queens Street", "EH627HA", "Edinburgh", null);
         storeRepository.save(store6);
+
+        Product product1 = new Product("milk", "Fresh cow milk", "m000232", "picture1", 20, 30, user1, order1, store1);
+        productRepository.save(product1);
+        Product product2 = new Product("butter", "Camman butter", "m000452", "picture2", 3, 20, user2, order3,store2);
+        productRepository.save(product2);
+        Product product3 = new Product("chocolate", "Dark switzerland best offer", "m000672", "picture3", 6, 60, null, null, null);
+        productRepository.save(product3);
+        Product product4 = new Product("pizza", "stone base meat and mushroom pizza", "m000522", "picture4", 14, 5, user2, order4, store4);
+        productRepository.save(product4);
+        Product product5 = new Product("bread", "buttered soft bread", "m000012", "picture5", 1, 50, user5, order5, store5);
+        productRepository.save(product5);
+
+
 
     }
 

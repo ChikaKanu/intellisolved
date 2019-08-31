@@ -51,9 +51,13 @@ public class Order implements Serializable {
         this.id = id;
     }
 
+    //this function converts the id to an order number automatically. This means if anyone is getting an item from the database, it comes with this order number.
+
     public String getOrderNumber() {
         DecimalFormat myFormatter = new DecimalFormat("ORD000000");
-        return myFormatter.format(id);
+        String orderNumber = myFormatter.format(id);
+        setOrderNumber(orderNumber);
+        return orderNumber;
     }
 
     public void setOrderNumber(String orderNumber) {

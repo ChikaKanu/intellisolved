@@ -1,11 +1,14 @@
 package com.intellidigest.example.intellisolved.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-//this class is also "Location"
+//this class is also "Location" or "Hotel"or "Provider"
 
 @Entity
 @Table(name="stores")
@@ -32,12 +35,19 @@ public class Store implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnoreProperties("products")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Product> products;
+
+
     public Store(String name, String address, String city, String postcode, User user) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.postcode = postcode;
         this.user = user;
+        this.products = new ArrayList<>();
     }
 
 
@@ -91,5 +101,21 @@ public class Store implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        this.products.remove(product);
     }
 }

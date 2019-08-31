@@ -41,7 +41,12 @@ public class Product implements Serializable {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    public Product(String name, String description, String productId, String image, double price, double quantity, User user, Order order) {
+    @JsonIgnoreProperties("stores")
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    public Product(String name, String description, String productId, String image, double price, double quantity, User user, Order order, Store store) {
         this.productId = productId;
         this.name = name;
         this.description = description;
@@ -50,6 +55,7 @@ public class Product implements Serializable {
         this.quantity = quantity;
         this.user = user;
         this.order = order;
+        this.store = store;
     }
 
     public Product(){};
@@ -128,4 +134,11 @@ public class Product implements Serializable {
         this.order = order;
     }
 
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
 }
