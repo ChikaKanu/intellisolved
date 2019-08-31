@@ -21,6 +21,6 @@ public interface UserProjection {
    String getCity();
    String getPostcode();
    List<Product> getPreferredProducts();
-   List<Order> getOrder();
+   List<Order> getOrders();
    List<Store> getPreferredStore();
 }

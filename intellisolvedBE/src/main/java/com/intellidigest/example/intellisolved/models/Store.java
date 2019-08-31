@@ -3,12 +3,13 @@ package com.intellidigest.example.intellisolved.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 //this class is also "Location"
 
 @Entity
 @Table(name="stores")
-public class Store {
+public class Store implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
